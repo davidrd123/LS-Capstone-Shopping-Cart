@@ -9,4 +9,4 @@ import App from "./components/App"
 
 
 const rootElement = document.getElementById("root");
-ReactDOM.createRoot(rootElement).render(React.createElement(<App />));
+ReactDOM.createRoot(rootElement).render(<App />);

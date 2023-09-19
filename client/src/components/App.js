@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Product from './Product';
 import ProductList from './ProductList';
 import ProductForm from './ProductForm';
-
+import mockData from '../mockData/data';
 
 // import './assets/index.css';
 
