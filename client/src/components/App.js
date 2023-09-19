@@ -5,7 +5,7 @@ import ProductList from './ProductList';
 import ProductForm from './ProductForm';
 import mockData from '../mockData/data';
 
-// import './assets/index.css';
+import '../assets/index.css';
 
 const App = () => {
   return (
