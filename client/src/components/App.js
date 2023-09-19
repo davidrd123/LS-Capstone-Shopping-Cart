@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Cart from './components/Cart';
-import Product from './components/Product';
-import ProductList from './components/ProductList';
-import ProductForm from './components/ProductForm';
+// import Cart from 'Cart';
+import Product from './Product';
+import ProductList from './ProductList';
+import ProductForm from './ProductForm';
 
 
-import './assets/index.css';
+// import './assets/index.css';
 
 const App = () => {
   return (
