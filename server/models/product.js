@@ -18,6 +18,15 @@ const ProductSchema = new Schema({
 
 }, {timestamps: true})
 
+ProductSchema.set('toJSON', {
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
+    return ret
+  }
+});
+
 const Product = mongoose.model('product', ProductSchema);
 
 module.exports = Product;

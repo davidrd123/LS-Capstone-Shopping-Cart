@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const ProductForm = ({ initialValues, submitText, onSubmit, onCancel }) => {
+const ProductForm = ({ formType, initialValues = { title: '', price: '', quantity: '' }, submitText, onSubmit, onCancel }) => {
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -10,24 +10,37 @@ const ProductForm = ({ initialValues, submitText, onSubmit, onCancel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (formType === 'edit' && !values.id) {
+      console.error('You need to pass an id for editing');
+      return;
+    }
+    
+    console.log(`[ProductForm] handleSubmit: ${JSON.stringify(values)}`);
     onSubmit(values);
   }
 
   const handleCancel = () => {
     setValues(initialValues);
-    onCancel();
+    if (typeof onCancel === 'function') {
+      onCancel();
+    } else {
+      console.error('You need to define onCancel as a function');
+    }
   }
 
   return (
+    <>
+    <h3>{submitText} Product</h3>
     <form onSubmit={handleSubmit}>
       <div className="input-group">
         <label htmlFor='product-name'>Product Name</label>
         <input
           type='text'
           id='product-name'
-          name='product-name'
-          onchange={handleChange}
-          value={values.name}
+          name='title'
+          onChange={handleChange}
+          value={values.title}
           required={true}
         />
       </div>
@@ -36,8 +49,8 @@ const ProductForm = ({ initialValues, submitText, onSubmit, onCancel }) => {
         <input
           type='number'
           id='product-price'
-          name='product-price'
-          onchange={handleChange}
+          name='price'
+          onChange={handleChange}
           value={values.price}
           required={true}
         />
@@ -47,8 +60,8 @@ const ProductForm = ({ initialValues, submitText, onSubmit, onCancel }) => {
         <input
           type='number'
           id='product-quantity'
-          name='product-quantity'
-          onchange={handleChange}
+          name='quantity'
+          onChange={handleChange}
           value={values.quantity}
           min={0}
           required={true}
@@ -58,6 +71,7 @@ const ProductForm = ({ initialValues, submitText, onSubmit, onCancel }) => {
       <button type='submit'>{submitText}</button>
       <button type='button' onClick={handleCancel}>Cancel</button>
     </form>
+    </>
   )
 }
 

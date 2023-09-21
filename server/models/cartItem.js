@@ -25,6 +25,15 @@ const CartItemSchema = new Schema(
   { timestamps: true }
 );
 
+CartItemSchema.set("toJSON", {
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
+    return ret;
+  },
+});
+
 const CartItem = mongoose.model("cartItem", CartItemSchema);
 
 module.exports = CartItem;

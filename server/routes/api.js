@@ -176,7 +176,7 @@ router.post("/add-to-cart", (req, res, next) => {
           }
         })
         .then((item) => {
-          const { error, ...product } = updatedProduct.toObject();
+          const { error, ...product } = updatedProduct.toJSON(); // Changed from toObject
           res.json({ product, item });
         });
     });

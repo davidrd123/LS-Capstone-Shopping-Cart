@@ -9,6 +9,7 @@ const app = express();
 
 const port = process.env.PORT || 5001;
 
+mongoose.set("debug", true);
 mongoose
   .connect(process.env.DB, {
     useNewUrlParser: true,
